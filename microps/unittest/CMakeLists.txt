@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.13)
+project(unittest_for_tcp_ip)
+find_package(GTest)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -iquote platform/linux")
+include_directories(/workspace/microps/platform/linux)
+add_executable(unittest test_util.cpp ../util.c)
+target_link_libraries(unittest ${GTEST_BOTH_LIBRARIES} pthread)
+target_include_directories(unittest PUBLIC ${GTEST_INCLUDE_DIRS})

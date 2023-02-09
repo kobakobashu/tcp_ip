@@ -78,11 +78,6 @@ hexdump(FILE *fp, const void *data, size_t size)
  * Queue
  */
 
-struct queue_entry {
-    struct queue_entry *next;
-    void *data;
-};
-
 void
 queue_init(struct queue_head *queue)
 {

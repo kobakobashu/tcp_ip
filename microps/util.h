@@ -72,7 +72,10 @@ hexdump(FILE *fp, const void *data, size_t size);
  * Queue
  */
 
-struct queue_entry;
+struct queue_entry {
+    struct queue_entry *next;
+    void *data;
+};
 
 struct queue_head {
     struct queue_entry *head;
