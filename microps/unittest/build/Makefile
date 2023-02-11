@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /workspace/microps/unittest/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,17 +111,110 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named unittest
+# Target rules for targets named test_util
 
 # Build rule for target.
-unittest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 unittest
-.PHONY : unittest
+test_util: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_util
+.PHONY : test_util
 
 # fast build rule for target.
-unittest/fast:
-	$(MAKE) -f CMakeFiles/unittest.dir/build.make CMakeFiles/unittest.dir/build
-.PHONY : unittest/fast
+test_util/fast:
+	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/build
+.PHONY : test_util/fast
+
+#=============================================================================
+# Target rules for targets named test_net
+
+# Build rule for target.
+test_net: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_net
+.PHONY : test_net
+
+# fast build rule for target.
+test_net/fast:
+	$(MAKE) -f CMakeFiles/test_net.dir/build.make CMakeFiles/test_net.dir/build
+.PHONY : test_net/fast
+
+#=============================================================================
+# Target rules for targets named test_dummy
+
+# Build rule for target.
+test_dummy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_dummy
+.PHONY : test_dummy
+
+# fast build rule for target.
+test_dummy/fast:
+	$(MAKE) -f CMakeFiles/test_dummy.dir/build.make CMakeFiles/test_dummy.dir/build
+.PHONY : test_dummy/fast
+
+#=============================================================================
+# Target rules for targets named source
+
+# Build rule for target.
+source: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 source
+.PHONY : source
+
+# fast build rule for target.
+source/fast:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/build
+.PHONY : source/fast
+
+test_dummy.o: test_dummy.cpp.o
+
+.PHONY : test_dummy.o
+
+# target to build an object file
+test_dummy.cpp.o:
+	$(MAKE) -f CMakeFiles/test_dummy.dir/build.make CMakeFiles/test_dummy.dir/test_dummy.cpp.o
+.PHONY : test_dummy.cpp.o
+
+test_dummy.i: test_dummy.cpp.i
+
+.PHONY : test_dummy.i
+
+# target to preprocess a source file
+test_dummy.cpp.i:
+	$(MAKE) -f CMakeFiles/test_dummy.dir/build.make CMakeFiles/test_dummy.dir/test_dummy.cpp.i
+.PHONY : test_dummy.cpp.i
+
+test_dummy.s: test_dummy.cpp.s
+
+.PHONY : test_dummy.s
+
+# target to generate assembly for a file
+test_dummy.cpp.s:
+	$(MAKE) -f CMakeFiles/test_dummy.dir/build.make CMakeFiles/test_dummy.dir/test_dummy.cpp.s
+.PHONY : test_dummy.cpp.s
+
+test_net.o: test_net.cpp.o
+
+.PHONY : test_net.o
+
+# target to build an object file
+test_net.cpp.o:
+	$(MAKE) -f CMakeFiles/test_net.dir/build.make CMakeFiles/test_net.dir/test_net.cpp.o
+.PHONY : test_net.cpp.o
+
+test_net.i: test_net.cpp.i
+
+.PHONY : test_net.i
+
+# target to preprocess a source file
+test_net.cpp.i:
+	$(MAKE) -f CMakeFiles/test_net.dir/build.make CMakeFiles/test_net.dir/test_net.cpp.i
+.PHONY : test_net.cpp.i
+
+test_net.s: test_net.cpp.s
+
+.PHONY : test_net.s
+
+# target to generate assembly for a file
+test_net.cpp.s:
+	$(MAKE) -f CMakeFiles/test_net.dir/build.make CMakeFiles/test_net.dir/test_net.cpp.s
+.PHONY : test_net.cpp.s
 
 test_util.o: test_util.cpp.o
 
@@ -129,7 +222,7 @@ test_util.o: test_util.cpp.o
 
 # target to build an object file
 test_util.cpp.o:
-	$(MAKE) -f CMakeFiles/unittest.dir/build.make CMakeFiles/unittest.dir/test_util.cpp.o
+	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/test_util.cpp.o
 .PHONY : test_util.cpp.o
 
 test_util.i: test_util.cpp.i
@@ -138,7 +231,7 @@ test_util.i: test_util.cpp.i
 
 # target to preprocess a source file
 test_util.cpp.i:
-	$(MAKE) -f CMakeFiles/unittest.dir/build.make CMakeFiles/unittest.dir/test_util.cpp.i
+	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/test_util.cpp.i
 .PHONY : test_util.cpp.i
 
 test_util.s: test_util.cpp.s
@@ -147,8 +240,62 @@ test_util.s: test_util.cpp.s
 
 # target to generate assembly for a file
 test_util.cpp.s:
-	$(MAKE) -f CMakeFiles/unittest.dir/build.make CMakeFiles/unittest.dir/test_util.cpp.s
+	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/test_util.cpp.s
 .PHONY : test_util.cpp.s
+
+workspace/microps/driver/dummy.o: workspace/microps/driver/dummy.c.o
+
+.PHONY : workspace/microps/driver/dummy.o
+
+# target to build an object file
+workspace/microps/driver/dummy.c.o:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/driver/dummy.c.o
+.PHONY : workspace/microps/driver/dummy.c.o
+
+workspace/microps/driver/dummy.i: workspace/microps/driver/dummy.c.i
+
+.PHONY : workspace/microps/driver/dummy.i
+
+# target to preprocess a source file
+workspace/microps/driver/dummy.c.i:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/driver/dummy.c.i
+.PHONY : workspace/microps/driver/dummy.c.i
+
+workspace/microps/driver/dummy.s: workspace/microps/driver/dummy.c.s
+
+.PHONY : workspace/microps/driver/dummy.s
+
+# target to generate assembly for a file
+workspace/microps/driver/dummy.c.s:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/driver/dummy.c.s
+.PHONY : workspace/microps/driver/dummy.c.s
+
+workspace/microps/net.o: workspace/microps/net.c.o
+
+.PHONY : workspace/microps/net.o
+
+# target to build an object file
+workspace/microps/net.c.o:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/net.c.o
+.PHONY : workspace/microps/net.c.o
+
+workspace/microps/net.i: workspace/microps/net.c.i
+
+.PHONY : workspace/microps/net.i
+
+# target to preprocess a source file
+workspace/microps/net.c.i:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/net.c.i
+.PHONY : workspace/microps/net.c.i
+
+workspace/microps/net.s: workspace/microps/net.c.s
+
+.PHONY : workspace/microps/net.s
+
+# target to generate assembly for a file
+workspace/microps/net.c.s:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/net.c.s
+.PHONY : workspace/microps/net.c.s
 
 workspace/microps/util.o: workspace/microps/util.c.o
 
@@ -156,7 +303,7 @@ workspace/microps/util.o: workspace/microps/util.c.o
 
 # target to build an object file
 workspace/microps/util.c.o:
-	$(MAKE) -f CMakeFiles/unittest.dir/build.make CMakeFiles/unittest.dir/workspace/microps/util.c.o
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/util.c.o
 .PHONY : workspace/microps/util.c.o
 
 workspace/microps/util.i: workspace/microps/util.c.i
@@ -165,7 +312,7 @@ workspace/microps/util.i: workspace/microps/util.c.i
 
 # target to preprocess a source file
 workspace/microps/util.c.i:
-	$(MAKE) -f CMakeFiles/unittest.dir/build.make CMakeFiles/unittest.dir/workspace/microps/util.c.i
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/util.c.i
 .PHONY : workspace/microps/util.c.i
 
 workspace/microps/util.s: workspace/microps/util.c.s
@@ -174,7 +321,7 @@ workspace/microps/util.s: workspace/microps/util.c.s
 
 # target to generate assembly for a file
 workspace/microps/util.c.s:
-	$(MAKE) -f CMakeFiles/unittest.dir/build.make CMakeFiles/unittest.dir/workspace/microps/util.c.s
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/util.c.s
 .PHONY : workspace/microps/util.c.s
 
 # Help Target
@@ -183,12 +330,27 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... unittest"
+	@echo "... rebuild_cache"
+	@echo "... test_util"
+	@echo "... test_net"
+	@echo "... test_dummy"
+	@echo "... source"
+	@echo "... test_dummy.o"
+	@echo "... test_dummy.i"
+	@echo "... test_dummy.s"
+	@echo "... test_net.o"
+	@echo "... test_net.i"
+	@echo "... test_net.s"
 	@echo "... test_util.o"
 	@echo "... test_util.i"
 	@echo "... test_util.s"
+	@echo "... workspace/microps/driver/dummy.o"
+	@echo "... workspace/microps/driver/dummy.i"
+	@echo "... workspace/microps/driver/dummy.s"
+	@echo "... workspace/microps/net.o"
+	@echo "... workspace/microps/net.i"
+	@echo "... workspace/microps/net.s"
 	@echo "... workspace/microps/util.o"
 	@echo "... workspace/microps/util.i"
 	@echo "... workspace/microps/util.s"
