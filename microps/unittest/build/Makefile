@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named test_intr
+
+# Build rule for target.
+test_intr: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_intr
+.PHONY : test_intr
+
+# fast build rule for target.
+test_intr/fast:
+	$(MAKE) -f CMakeFiles/test_intr.dir/build.make CMakeFiles/test_intr.dir/build
+.PHONY : test_intr/fast
+
+#=============================================================================
 # Target rules for targets named test_util
 
 # Build rule for target.
@@ -188,6 +201,33 @@ test_dummy.s: test_dummy.cpp.s
 test_dummy.cpp.s:
 	$(MAKE) -f CMakeFiles/test_dummy.dir/build.make CMakeFiles/test_dummy.dir/test_dummy.cpp.s
 .PHONY : test_dummy.cpp.s
+
+test_intr.o: test_intr.cpp.o
+
+.PHONY : test_intr.o
+
+# target to build an object file
+test_intr.cpp.o:
+	$(MAKE) -f CMakeFiles/test_intr.dir/build.make CMakeFiles/test_intr.dir/test_intr.cpp.o
+.PHONY : test_intr.cpp.o
+
+test_intr.i: test_intr.cpp.i
+
+.PHONY : test_intr.i
+
+# target to preprocess a source file
+test_intr.cpp.i:
+	$(MAKE) -f CMakeFiles/test_intr.dir/build.make CMakeFiles/test_intr.dir/test_intr.cpp.i
+.PHONY : test_intr.cpp.i
+
+test_intr.s: test_intr.cpp.s
+
+.PHONY : test_intr.s
+
+# target to generate assembly for a file
+test_intr.cpp.s:
+	$(MAKE) -f CMakeFiles/test_intr.dir/build.make CMakeFiles/test_intr.dir/test_intr.cpp.s
+.PHONY : test_intr.cpp.s
 
 test_net.o: test_net.cpp.o
 
@@ -297,6 +337,33 @@ workspace/microps/net.c.s:
 	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/net.c.s
 .PHONY : workspace/microps/net.c.s
 
+workspace/microps/platform/linux/intr.o: workspace/microps/platform/linux/intr.c.o
+
+.PHONY : workspace/microps/platform/linux/intr.o
+
+# target to build an object file
+workspace/microps/platform/linux/intr.c.o:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/platform/linux/intr.c.o
+.PHONY : workspace/microps/platform/linux/intr.c.o
+
+workspace/microps/platform/linux/intr.i: workspace/microps/platform/linux/intr.c.i
+
+.PHONY : workspace/microps/platform/linux/intr.i
+
+# target to preprocess a source file
+workspace/microps/platform/linux/intr.c.i:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/platform/linux/intr.c.i
+.PHONY : workspace/microps/platform/linux/intr.c.i
+
+workspace/microps/platform/linux/intr.s: workspace/microps/platform/linux/intr.c.s
+
+.PHONY : workspace/microps/platform/linux/intr.s
+
+# target to generate assembly for a file
+workspace/microps/platform/linux/intr.c.s:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/platform/linux/intr.c.s
+.PHONY : workspace/microps/platform/linux/intr.c.s
+
 workspace/microps/util.o: workspace/microps/util.c.o
 
 .PHONY : workspace/microps/util.o
@@ -331,6 +398,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... test_intr"
 	@echo "... rebuild_cache"
 	@echo "... test_util"
 	@echo "... test_net"
@@ -339,6 +407,9 @@ help:
 	@echo "... test_dummy.o"
 	@echo "... test_dummy.i"
 	@echo "... test_dummy.s"
+	@echo "... test_intr.o"
+	@echo "... test_intr.i"
+	@echo "... test_intr.s"
 	@echo "... test_net.o"
 	@echo "... test_net.i"
 	@echo "... test_net.s"
@@ -351,6 +422,9 @@ help:
 	@echo "... workspace/microps/net.o"
 	@echo "... workspace/microps/net.i"
 	@echo "... workspace/microps/net.s"
+	@echo "... workspace/microps/platform/linux/intr.o"
+	@echo "... workspace/microps/platform/linux/intr.i"
+	@echo "... workspace/microps/platform/linux/intr.s"
 	@echo "... workspace/microps/util.o"
 	@echo "... workspace/microps/util.i"
 	@echo "... workspace/microps/util.s"
