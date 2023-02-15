@@ -124,6 +124,19 @@ test_intr/fast:
 .PHONY : test_intr/fast
 
 #=============================================================================
+# Target rules for targets named test_loopback
+
+# Build rule for target.
+test_loopback: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_loopback
+.PHONY : test_loopback
+
+# fast build rule for target.
+test_loopback/fast:
+	$(MAKE) -f CMakeFiles/test_loopback.dir/build.make CMakeFiles/test_loopback.dir/build
+.PHONY : test_loopback/fast
+
+#=============================================================================
 # Target rules for targets named test_util
 
 # Build rule for target.
@@ -229,6 +242,33 @@ test_intr.cpp.s:
 	$(MAKE) -f CMakeFiles/test_intr.dir/build.make CMakeFiles/test_intr.dir/test_intr.cpp.s
 .PHONY : test_intr.cpp.s
 
+test_loopback.o: test_loopback.cpp.o
+
+.PHONY : test_loopback.o
+
+# target to build an object file
+test_loopback.cpp.o:
+	$(MAKE) -f CMakeFiles/test_loopback.dir/build.make CMakeFiles/test_loopback.dir/test_loopback.cpp.o
+.PHONY : test_loopback.cpp.o
+
+test_loopback.i: test_loopback.cpp.i
+
+.PHONY : test_loopback.i
+
+# target to preprocess a source file
+test_loopback.cpp.i:
+	$(MAKE) -f CMakeFiles/test_loopback.dir/build.make CMakeFiles/test_loopback.dir/test_loopback.cpp.i
+.PHONY : test_loopback.cpp.i
+
+test_loopback.s: test_loopback.cpp.s
+
+.PHONY : test_loopback.s
+
+# target to generate assembly for a file
+test_loopback.cpp.s:
+	$(MAKE) -f CMakeFiles/test_loopback.dir/build.make CMakeFiles/test_loopback.dir/test_loopback.cpp.s
+.PHONY : test_loopback.cpp.s
+
 test_net.o: test_net.cpp.o
 
 .PHONY : test_net.o
@@ -309,6 +349,33 @@ workspace/microps/driver/dummy.s: workspace/microps/driver/dummy.c.s
 workspace/microps/driver/dummy.c.s:
 	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/driver/dummy.c.s
 .PHONY : workspace/microps/driver/dummy.c.s
+
+workspace/microps/driver/loopback.o: workspace/microps/driver/loopback.c.o
+
+.PHONY : workspace/microps/driver/loopback.o
+
+# target to build an object file
+workspace/microps/driver/loopback.c.o:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/driver/loopback.c.o
+.PHONY : workspace/microps/driver/loopback.c.o
+
+workspace/microps/driver/loopback.i: workspace/microps/driver/loopback.c.i
+
+.PHONY : workspace/microps/driver/loopback.i
+
+# target to preprocess a source file
+workspace/microps/driver/loopback.c.i:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/driver/loopback.c.i
+.PHONY : workspace/microps/driver/loopback.c.i
+
+workspace/microps/driver/loopback.s: workspace/microps/driver/loopback.c.s
+
+.PHONY : workspace/microps/driver/loopback.s
+
+# target to generate assembly for a file
+workspace/microps/driver/loopback.c.s:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/driver/loopback.c.s
+.PHONY : workspace/microps/driver/loopback.c.s
 
 workspace/microps/net.o: workspace/microps/net.c.o
 
@@ -400,6 +467,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... test_intr"
 	@echo "... rebuild_cache"
+	@echo "... test_loopback"
 	@echo "... test_util"
 	@echo "... test_net"
 	@echo "... test_dummy"
@@ -410,6 +478,9 @@ help:
 	@echo "... test_intr.o"
 	@echo "... test_intr.i"
 	@echo "... test_intr.s"
+	@echo "... test_loopback.o"
+	@echo "... test_loopback.i"
+	@echo "... test_loopback.s"
 	@echo "... test_net.o"
 	@echo "... test_net.i"
 	@echo "... test_net.s"
@@ -419,6 +490,9 @@ help:
 	@echo "... workspace/microps/driver/dummy.o"
 	@echo "... workspace/microps/driver/dummy.i"
 	@echo "... workspace/microps/driver/dummy.s"
+	@echo "... workspace/microps/driver/loopback.o"
+	@echo "... workspace/microps/driver/loopback.i"
+	@echo "... workspace/microps/driver/loopback.s"
 	@echo "... workspace/microps/net.o"
 	@echo "... workspace/microps/net.i"
 	@echo "... workspace/microps/net.s"
