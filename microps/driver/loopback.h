@@ -8,7 +8,7 @@
 
 #define LOOPBACK_MTU UINT16_MAX /* maximum size of IP datagram */
 #define LOOPBACK_QUEUE_LIMIT 16
-#define LOOPBACK_IRQ 0x0001
+#define LOOPBACK_IRQ (INTR_IRQ_BASE+1)
 
 struct net_device *loopback_init(void);
 
