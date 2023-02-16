@@ -32,3 +32,17 @@ TEST(IntrRequestIrqTest, InvalidFlags) {
     EXPECT_EQ(result_2, -1);
 }
 
+// ToDo: test fails because sigmask is static variable in intr.c
+// static pthread_t tid;
+// static pthread_barrier_t barrier;
+// static sigset_t sigmask;
+
+// TEST(IntrInit, InitializesVariablesCorrectly) {
+//   int result = intr_init();
+
+//   EXPECT_EQ(result, 0);
+//   EXPECT_EQ(tid, pthread_self());
+
+//   EXPECT_TRUE(sigismember(&sigmask, SIGHUP));
+//   EXPECT_TRUE(sigismember(&sigmask, SIGUSR1));
+// }
