@@ -55,5 +55,6 @@ void net_shutdown(void);
 int net_init(void);
 int net_input_handler(uint16_t type, const uint8_t *data, size_t len, struct net_device *dev);
 int net_protocol_register(uint16_t type, void (*handler)(const uint8_t *data, size_t len, struct net_device *dev));
+int net_softirq_handler(void);
 
 #endif
