@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named test_ip
+
+# Build rule for target.
+test_ip: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_ip
+.PHONY : test_ip
+
+# fast build rule for target.
+test_ip/fast:
+	$(MAKE) -f CMakeFiles/test_ip.dir/build.make CMakeFiles/test_ip.dir/build
+.PHONY : test_ip/fast
+
+#=============================================================================
 # Target rules for targets named test_intr
 
 # Build rule for target.
@@ -241,6 +254,33 @@ test_intr.s: test_intr.cpp.s
 test_intr.cpp.s:
 	$(MAKE) -f CMakeFiles/test_intr.dir/build.make CMakeFiles/test_intr.dir/test_intr.cpp.s
 .PHONY : test_intr.cpp.s
+
+test_ip.o: test_ip.cpp.o
+
+.PHONY : test_ip.o
+
+# target to build an object file
+test_ip.cpp.o:
+	$(MAKE) -f CMakeFiles/test_ip.dir/build.make CMakeFiles/test_ip.dir/test_ip.cpp.o
+.PHONY : test_ip.cpp.o
+
+test_ip.i: test_ip.cpp.i
+
+.PHONY : test_ip.i
+
+# target to preprocess a source file
+test_ip.cpp.i:
+	$(MAKE) -f CMakeFiles/test_ip.dir/build.make CMakeFiles/test_ip.dir/test_ip.cpp.i
+.PHONY : test_ip.cpp.i
+
+test_ip.s: test_ip.cpp.s
+
+.PHONY : test_ip.s
+
+# target to generate assembly for a file
+test_ip.cpp.s:
+	$(MAKE) -f CMakeFiles/test_ip.dir/build.make CMakeFiles/test_ip.dir/test_ip.cpp.s
+.PHONY : test_ip.cpp.s
 
 test_loopback.o: test_loopback.cpp.o
 
@@ -377,6 +417,33 @@ workspace/microps/driver/loopback.c.s:
 	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/driver/loopback.c.s
 .PHONY : workspace/microps/driver/loopback.c.s
 
+workspace/microps/ip.o: workspace/microps/ip.c.o
+
+.PHONY : workspace/microps/ip.o
+
+# target to build an object file
+workspace/microps/ip.c.o:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/ip.c.o
+.PHONY : workspace/microps/ip.c.o
+
+workspace/microps/ip.i: workspace/microps/ip.c.i
+
+.PHONY : workspace/microps/ip.i
+
+# target to preprocess a source file
+workspace/microps/ip.c.i:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/ip.c.i
+.PHONY : workspace/microps/ip.c.i
+
+workspace/microps/ip.s: workspace/microps/ip.c.s
+
+.PHONY : workspace/microps/ip.s
+
+# target to generate assembly for a file
+workspace/microps/ip.c.s:
+	$(MAKE) -f CMakeFiles/source.dir/build.make CMakeFiles/source.dir/workspace/microps/ip.c.s
+.PHONY : workspace/microps/ip.c.s
+
 workspace/microps/net.o: workspace/microps/net.c.o
 
 .PHONY : workspace/microps/net.o
@@ -464,6 +531,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... test_ip"
 	@echo "... edit_cache"
 	@echo "... test_intr"
 	@echo "... rebuild_cache"
@@ -478,6 +546,9 @@ help:
 	@echo "... test_intr.o"
 	@echo "... test_intr.i"
 	@echo "... test_intr.s"
+	@echo "... test_ip.o"
+	@echo "... test_ip.i"
+	@echo "... test_ip.s"
 	@echo "... test_loopback.o"
 	@echo "... test_loopback.i"
 	@echo "... test_loopback.s"
@@ -493,6 +564,9 @@ help:
 	@echo "... workspace/microps/driver/loopback.o"
 	@echo "... workspace/microps/driver/loopback.i"
 	@echo "... workspace/microps/driver/loopback.s"
+	@echo "... workspace/microps/ip.o"
+	@echo "... workspace/microps/ip.i"
+	@echo "... workspace/microps/ip.s"
 	@echo "... workspace/microps/net.o"
 	@echo "... workspace/microps/net.i"
 	@echo "... workspace/microps/net.s"
