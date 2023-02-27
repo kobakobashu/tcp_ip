@@ -50,3 +50,9 @@ TEST(IPAddrNtopTest, ValidInput) {
 
     EXPECT_STREQ(ip_addr_ntop(n, buf, size), "192.0.2.1");
 }
+
+TEST(IpOutoutTest, CorrectRoutingErrorHappen) {
+    ip_addr_t IP_ADDR_ANY = 0x00000000;
+    ip_addr_t IP_ADDR_BROADCAST = 0xffffffff;
+    EXPECT_EQ(ip_output(1, NULL, 0, IP_ADDR_ANY, IP_ADDR_BROADCAST), -1);
+}
