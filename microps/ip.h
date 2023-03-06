@@ -10,6 +10,7 @@
 #define IP_HDR_SIZE_MAX 60
 
 #define IP_TOTAL_SIZE_MAX UINT16_MAX /* maximum value of uint16 */
+#define IP_PAYLOAD_SIZE_MAX (IP_TOTAL_SIZE_MAX - IP_HDR_SIZE_MIN)
 
 #define IP_ADDR_LEN 4
 #define IP_ADDR_STR_LEN 16
