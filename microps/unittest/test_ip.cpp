@@ -56,3 +56,10 @@ TEST(IpOutoutTest, CorrectRoutingErrorHappen) {
     ip_addr_t IP_ADDR_BROADCAST = 0xffffffff;
     EXPECT_EQ(ip_output(1, NULL, 0, IP_ADDR_ANY, IP_ADDR_BROADCAST), -1);
 }
+
+TEST(IpProtocolRegisterTest, RegisterIpProtocol) {
+    uint8_t type = 1;
+    void (*handler)(const uint8_t*, size_t, ip_addr_t, ip_addr_t, struct ip_iface*) = nullptr;
+    EXPECT_EQ(ip_protocol_register(type, handler), 0);
+    EXPECT_EQ(ip_protocol_register(type, handler), -1);
+}
