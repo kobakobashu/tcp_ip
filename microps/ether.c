@@ -44,7 +44,8 @@ ether_addr_pton(const char *p, uint8_t *n)
     return 0;
 }
 
-char *ether_addr_ntop(const uint8_t *n, char *p, size_t size) {
+char *
+ether_addr_ntop(const uint8_t *n, char *p, size_t size) {
     if (!n || !p) {
         return NULL;
     }

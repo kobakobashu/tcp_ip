@@ -29,6 +29,7 @@
 
 /* NOTE: use same value as the Ethernet types */
 #define NET_PROTOCOL_TYPE_IP   0x0800
+#define NET_PROTOCOL_TYPE_ARP  0x0806
 
 struct net_iface {
     struct net_iface *next;

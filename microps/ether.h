@@ -16,6 +16,9 @@
 #define ETHER_PAYLOAD_SIZE_MIN (ETHER_FRAME_SIZE_MIN - ETHER_HDR_SIZE)
 #define ETHER_PAYLOAD_SIZE_MAX (ETHER_FRAME_SIZE_MAX - ETHER_HDR_SIZE)
 
+#define ETHER_TYPE_IP   0x0800
+#define ETHER_TYPE_ARP  0x0806
+
 extern const uint8_t ETHER_ADDR_ANY[ETHER_ADDR_LEN];
 extern const uint8_t ETHER_ADDR_BROADCAST[ETHER_ADDR_LEN];
 
@@ -23,6 +26,7 @@ typedef ssize_t (*ether_transmit_func_t)(struct net_device *dev, const uint8_t *
 typedef ssize_t (*ether_input_func_t)(struct net_device *dev, uint8_t *buf, size_t size);
 
 int ether_addr_pton(const char *p, uint8_t *n);
+char *ether_addr_ntop(const uint8_t *n, char *p, size_t size);
 int ether_transmit_helper(struct net_device *dev, uint16_t type,  const uint8_t *data, size_t len, const void *dst, ether_transmit_func_t callback);
 int ether_input_helper(struct net_device *dev, ether_input_func_t callback);
 void ether_setup_helper(struct net_device *dev);

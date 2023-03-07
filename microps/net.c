@@ -6,6 +6,7 @@
 #include "intr.h"
 #include "ip.h"
 #include "icmp.h"
+#include "arp.h"
 
 /* NOTE: if you want to add/delete the entries after net_run(), you need to protect these lists with a mutex. */
 struct net_protocol {
@@ -246,6 +247,10 @@ net_init(void)
 {
     if (intr_init() == -1) {
         errorf("intr_init() failure");
+        return -1;
+    }
+    if (arp_init() == -1) {
+        errorf("arp_init() failure");
         return -1;
     }
 
