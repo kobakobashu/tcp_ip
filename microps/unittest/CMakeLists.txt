@@ -15,6 +15,7 @@ add_library(source
     ../ip.c
     ../icmp.c
     ../ether.c
+    ../arp.c
     ../platform/linux/intr.c
 )
 
@@ -26,8 +27,9 @@ add_executable(test_loopback test_loopback.cpp)
 add_executable(test_ip test_ip.cpp)
 add_executable(test_icmp test_icmp.cpp)
 add_executable(test_ether test_ether.cpp)
+add_executable(test_arp test_arp.cpp)
 
-foreach(target test_dummy test_net test_util test_intr test_loopback test_ip test_icmp test_ether)
+foreach(target test_dummy test_net test_util test_intr test_loopback test_ip test_icmp test_ether test_arp)
     target_link_libraries(${target} ${GTEST_BOTH_LIBRARIES} pthread source)
     target_include_directories(${target} PUBLIC ${GTEST_INCLUDE_DIRS})
 endforeach()
