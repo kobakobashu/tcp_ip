@@ -107,8 +107,7 @@ loopback_init(void)
         errorf("net_device_register() failure");
         return NULL;
     }
-    intr_request_irq(lo->irq, loopback_isr, dev->flags, dev->name, dev);
-
+    intr_request_irq(lo->irq, loopback_isr, INTR_IRQ_SHARED, dev->name, dev);
     debugf("initialized, dev=%s", dev->name);
     return dev;
 }

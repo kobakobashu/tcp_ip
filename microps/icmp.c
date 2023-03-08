@@ -21,7 +21,8 @@ struct icmp_echo {
     uint16_t seq;
 };
 
-static char *icmp_type_ntoa(uint8_t type) {
+static char *
+icmp_type_ntoa(uint8_t type) {
     switch (type) {
         case ICMP_TYPE_ECHOREPLY:
             return "EchoReply";
@@ -84,7 +85,7 @@ icmp_input(const uint8_t *data, size_t len, ip_addr_t src, ip_addr_t dst, struct
     char addr1[IP_ADDR_STR_LEN];
     char addr2[IP_ADDR_STR_LEN];
 
-    if (len < sizeof(hdr)) {
+    if (len < sizeof(*hdr)) {
         errorf("too short");
         return;
     }

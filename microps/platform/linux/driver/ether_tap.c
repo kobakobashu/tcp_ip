@@ -95,13 +95,12 @@ ether_tap_open(struct net_device *dev)
         }
     }
     return 0;
-};
+}
 
 static int
 ether_tap_close(struct net_device *dev)
 {
-    close(PRIV(dev)->fd);
-    return 0;
+    return close(PRIV(dev)->fd);
 }
 
 static ssize_t

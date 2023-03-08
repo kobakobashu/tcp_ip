@@ -114,10 +114,10 @@ ip_iface_select(ip_addr_t addr)
 
     for (entry = ifaces; entry; entry = entry->next) {
         if (entry->unicast == addr) {
-            return entry;
+            break;
         }
     }
-    return NULL;
+    return entry;
 }
 
 int
@@ -202,7 +202,7 @@ ip_input(const uint8_t *data, size_t len, struct net_device *dev)
     }
     hdr = (struct ip_hdr *)data;
 
-    v = (hdr->vhl & 0xf0) >> 4;
+    v = hdr->vhl >> 4;
     if (v != IP_VERSION_IPV4) {
         errorf("ip version error: v=%u", v);
         return;
@@ -289,24 +289,20 @@ ip_output_core(struct ip_iface *iface, uint8_t protocol, const uint8_t *data, si
     char addr[IP_ADDR_STR_LEN];
 
     hdr = (struct ip_hdr *)buf;
-
     hlen = IP_HDR_SIZE_MIN;
     hdr->vhl = (IP_VERSION_IPV4 << 4) | (hlen >> 2);
     hdr->tos = 0;
-    total = hton16(hlen + len);
-    hdr->total = total;
+    total = hlen + len;
+    hdr->total = hton16(total);
     hdr->id = hton16(id);
     hdr->offset = hton16(offset);
-    hdr->ttl = 255;
+    hdr->ttl = 0xff;
     hdr->protocol = protocol;
     hdr->sum = 0;
     hdr->src = src;
     hdr->dst = dst;
-
-    hdr->sum = cksum16((uint16_t *)hdr, len, 0);
-    
-    memcpy(buf + IP_HDR_SIZE_MIN, data, len);
-
+    hdr->sum = cksum16((uint16_t *)hdr, hlen, 0);
+    memcpy(hdr+1, data, len);
     debugf("dev=%s, dst=%s, protocol=%u, len=%u", NET_IFACE(iface)->dev->name, ip_addr_ntop(dst, addr, sizeof(addr)), protocol, total);
     ip_dump(buf, total);
 
@@ -332,7 +328,7 @@ ip_output(uint8_t protocol, const uint8_t *data, size_t len, ip_addr_t src, ip_a
             return -1;
         }
 
-        if (dst != iface->broadcast && dst == IP_ADDR_BROADCAST) {
+        if ((dst & iface->netmask) != (iface->unicast & iface->netmask) && dst != IP_ADDR_BROADCAST) {
             errorf("destination unreachable: %s", ip_addr_ntop(dst, addr, sizeof(addr)));
             return -1;
         }

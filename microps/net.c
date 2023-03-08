@@ -50,10 +50,10 @@ net_device_get_iface(struct net_device *dev, int family)
 
     for (entry = dev->ifaces; entry; entry = entry->next) {
         if (entry->family == family) {
-            return entry;
+            break;
         }
     }
-    return NULL;
+    return entry;
 }
 
 int
@@ -253,16 +253,14 @@ net_init(void)
         errorf("arp_init() failure");
         return -1;
     }
-
     if (ip_init() == -1) {
         errorf("ip_init() failure");
         return -1;
     }
-
-    infof("initialized");
-
     if (icmp_init() == -1) {
         errorf("icmp_init() failure");
+        return -1;
     }
+    infof("initialized");
     return 0;
 }

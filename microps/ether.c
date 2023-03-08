@@ -50,7 +50,7 @@ ether_addr_ntop(const uint8_t *n, char *p, size_t size) {
         return NULL;
     }
 
-    sprintf(p, "%02x:%02x:%02x:%02x:%02x:%02x", n[0], n[1], n[2], n[3], n[4], n[5]);
+    snprintf(p, size, "%02x:%02x:%02x:%02x:%02x:%02x", n[0], n[1], n[2], n[3], n[4], n[5]);
     return p;
 }
 
@@ -71,7 +71,7 @@ ether_dump(const uint8_t *frame, size_t flen)
 }
 
 int
-ether_transmit_helper(struct net_device *dev, uint16_t type,  const uint8_t *data, size_t len, const void *dst, ether_transmit_func_t callback)
+ether_transmit_helper(struct net_device *dev, uint16_t type, const uint8_t *data, size_t len, const void *dst, ether_transmit_func_t callback)
 {
     uint8_t frame[ETHER_FRAME_SIZE_MAX] = {};
     struct ether_hdr *hdr;
