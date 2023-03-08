@@ -131,3 +131,9 @@ TEST(NetDeviceGetIfaceTest, IfaceNotFound) {
 
     EXPECT_EQ(NULL, net_device_get_iface(dev, family));
 }
+
+TEST(NetTimerRegisterTest, RegisterTimer) {
+    struct timeval interval = {1, 0};
+
+    EXPECT_EQ(0, net_timer_register(interval, nullptr));
+}
