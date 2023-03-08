@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <sys/time.h>
 
 #include "net.h"
 #include "platform.h"
@@ -22,8 +23,16 @@ struct net_protocol_queue_entry {
     uint8_t data[];
 };
 
+struct net_timer {
+    struct net_timer *next;
+    struct timeval interval;
+    struct timeval last;
+    void (*handler)(void);
+};
+
 static struct net_device *devices;
 static struct net_protocol *protocols;
+static struct net_timer *timers;
 
 int
 net_device_add_iface(struct net_device *dev, struct net_iface *iface)
@@ -208,6 +217,42 @@ net_input_handler(uint16_t type, const uint8_t *data, size_t len, struct net_dev
         }
     }
     /* unsupported protocol */
+    return 0;
+}
+
+int
+net_timer_register(struct timeval interval, void (*handler)(void))
+{
+    struct net_timer *timer;
+
+    timer = memory_alloc(sizeof(*timer));
+    if (!timer) {
+        errorf("error");
+    }
+    timer->next = timers;
+    timer->interval = interval;
+    gettimeofday(&timer->last, NULL);
+    timer->handler = handler;
+    timers = timer;
+
+    infof("registered: interval={%d, %d}", interval.tv_sec, interval.tv_usec);
+    return 0;
+}
+
+int
+net_timer_handler(void)
+{
+    struct net_timer *timer;
+    struct timeval now, diff;
+
+    for (timer = timers; timer; timer = timer->next) {
+        gettimeofday(&now, NULL);
+        timersub(&now, &timer->last, &diff);
+        if (timercmp(&timer->interval, &diff, <) != 0) {
+            timer->handler();
+            timer->last = now;
+        }
+    }
     return 0;
 }
 
