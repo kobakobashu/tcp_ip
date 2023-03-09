@@ -298,8 +298,9 @@ arp_resolve(struct net_iface *iface, ip_addr_t pa, uint8_t *ha)
     mutex_lock(&mutex);
     cache = arp_cache_select(pa);
     if (!cache) {
-        debugf("cache not found, pa=%s", ip_addr_ntop(pa, addr1, sizeof(addr1)));
-        cache = memory_alloc(sizeof(*cache));
+        // debugf("cache not found, pa=%s", ip_addr_ntop(pa, addr1, sizeof(addr1)));
+        // cache = memory_alloc(sizeof(*cache));
+        cache = arp_cache_alloc();
         if (!cache) {
             mutex_unlock(&mutex);
             errorf("memory_alloc() failed");
@@ -311,6 +312,7 @@ arp_resolve(struct net_iface *iface, ip_addr_t pa, uint8_t *ha)
         gettimeofday(&cache->timestamp, NULL);
         arp_request(iface, pa);
         mutex_unlock(&mutex);
+        debugf("cache not found, pa=%s", ip_addr_ntop(pa, addr1, sizeof(addr1)));
         return ARP_RESOLVE_INCOMPLETE;
     }
     if (cache->state == ARP_CACHE_STATE_INCOMPLETE) {
