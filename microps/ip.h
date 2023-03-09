@@ -15,7 +15,16 @@
 #define IP_ADDR_LEN 4
 #define IP_ADDR_STR_LEN 16
 
+#define IP_ENDPOINT_STR_LEN (IP_ADDR_STR_LEN + 6) /* xxx.xxx.xxx.xxx:yyyyy\n */
+
+#define IP_PROTOCOL_UDP  0x11
+
 typedef uint32_t ip_addr_t;
+
+struct ip_endpoint {
+    ip_addr_t addr;
+    uint16_t port;
+};
 
 struct ip_iface {
     struct net_iface iface;
@@ -39,5 +48,7 @@ ssize_t ip_output(uint8_t protocol, const uint8_t *data, size_t len, ip_addr_t s
 int ip_protocol_register(uint8_t type, void (*handler)(const uint8_t *data, size_t len, ip_addr_t src, ip_addr_t dst, struct ip_iface *iface));
 int ip_route_set_default_gateway(struct ip_iface *iface, const char *gateway);
 struct ip_iface *ip_route_get_iface(ip_addr_t dst);
+int ip_endpoint_pton(const char *p, struct ip_endpoint *n);
+char *ip_endpoint_ntop(const struct ip_endpoint *n, char *p, size_t size);
 
 #endif
