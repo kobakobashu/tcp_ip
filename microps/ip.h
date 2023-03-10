@@ -17,6 +17,7 @@
 
 #define IP_ENDPOINT_STR_LEN (IP_ADDR_STR_LEN + 6) /* xxx.xxx.xxx.xxx:yyyyy\n */
 
+#define IP_PROTOCOL_TCP  0x06
 #define IP_PROTOCOL_UDP  0x11
 
 typedef uint32_t ip_addr_t;
