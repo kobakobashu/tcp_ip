@@ -77,5 +77,8 @@ int net_device_add_iface(struct net_device *dev, struct net_iface *iface);
 struct net_iface *net_device_get_iface(struct net_device *dev, int family);
 int net_timer_register(struct timeval interval, void (*handler)(void));
 int net_timer_handler(void);
+int net_event_subscribe(void (*handler)(void *arg), void *arg);
+int net_event_handler(void);
+void net_raise_event();
 
 #endif

@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <pthread.h>
 
+#define INTR_IRQ_EVENT SIGUSR2
+
 /*
  * Memory
  */
@@ -48,3 +50,13 @@ mutex_unlock(mutex_t *mutex)
 }
 
 #endif
+
+/*
+ * Scheduler
+ */
+
+struct sched_ctx {
+    pthread_cond_t cond;
+    int interrupted;
+    int wc; /* wait count */
+};
